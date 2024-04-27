@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<link href="../assets/css/login.css" rel="stylesheet">
+<link href="/static/portfolio/css/login.css" rel="stylesheet">
 <body>
     <div class="container" id="container">
-       <div class="flex">
+       <div class="column">
         <div class="form-container sign-in-container">
-            <form action="#">   
+            <form action="#">
                 <h1>Kirish</h1>
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Parol" />
@@ -24,10 +25,10 @@
                     <h1>Salom, Bro!</h1>
                     <p>Profilingiz Yo'qmi?</p>
                     <button class="ghost" id="signUp" style="cursor: pointer;">
-                        <a href="sign.html" style="color: white;">Sign Up</a>
+                        <a href="register/" style="color: white;">Ro'yhatdan O'tish</a>
                     </button>
-                   <a href="../index.html" id="signUp" style="cursor: pointer; position: absolute; bottom: 20px; right: 20px; color: white;">
-                        <h1 style="color: white;"><i class="bi bi-arrow-left"></i>Bosh Saxifa</h1href=>
+                   <a href="/" id="signUp" style="cursor: pointer; position: absolute; bottom: 20px; right: 20px; color: white;">
+                        <h1 style="color: white;"><i class="bi bi-arrow-left"></i>Bosh Sahifa</h1>
                    </a>
                 </div>
             </div>
