@@ -8,11 +8,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Do'kon{% endblock %}</title>
-    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/media.css' %}">
-    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="shortcut icon" href="{% static 'work/images/logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'work/css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'work/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'work/css/media.css' %}">
+    <link rel="stylesheet" href="{% static 'work/css/animate.css' %}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -132,7 +132,7 @@
     <div class="sidebar" id="sidebar-left-side">
         <!-- Sidebar content -->
         <a href="" class="logo">
-            <img src="{% static 'images/logo.png' %}" style="margin-top: 30px; margin-left: 60px;" height="100" alt="Logo">
+            <img src="{% static 'work/images/logo.png' %}" style="margin-top: 30px; margin-left: 60px;" height="100" alt="Logo">
             <!-- <div class="logo-name" style="margin-top: 10px; margin-left: 10px; font-size: 20px;"><span>Start</span>Work</div> -->
         </a>
         <ul class="side-menu side-menu-1"> 
@@ -155,7 +155,7 @@
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="imglogo" style="color: green;">{{ request.user.full_name }} - {{ request.user.position }}</label>
             <!-- <a href="#" class="profile" id="imglogo">
-                <img src="{% static 'images/logo.png' %}">
+                <img src="{% static 'work/images/logo.png' %}">
             </a> -->
         </nav>
         {% if messages %}
@@ -171,7 +171,7 @@
     </div>
 
     <!-- Common scripts -->
-    <script src="{% static 'js/library.js' %}"></script>
+    <script src="{% static 'work/js/library.js' %}"></script>
     <script>
         TP.setup("myTable1", "popup");
         TP.setup("myTable2", "popup");
@@ -184,7 +184,7 @@
             // Create img element
             var img = document.createElement('img');
             // Set src attribute to the static file URL
-            img.src = "{% static 'images/logo.png' %}";
+            img.src = "{% static 'work/images/logo.png' %}";
             img.height = 100;
             
             // Get the sidebar left side element by its id
@@ -257,10 +257,10 @@
         });
         
     </script>
-    <script src="{% static 'js/variables.js' %}"></script>
-    <script src="{% static 'js/script.js' %}"></script>
-    <script defer src="{% static 'js/animate.js' %}"></script>
-    <script defer src="{% static 'js/dokon.js' %}"></script>
+    <script src="{% static 'work/js/variables.js' %}"></script>
+    <script src="{% static 'work/js/script.js' %}"></script>
+    <script defer src="{% static 'work/js/animate.js' %}"></script>
+    <script defer src="{% static 'work/js/dokon.js' %}"></script>
     </body>
     
     </html>
