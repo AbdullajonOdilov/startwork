@@ -21,10 +21,15 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
     path('work/', include('startteam.urls')),
     path('', include('portfolio.urls')),
     path('login/', include('portfolio.urls')),
     path('register/', include('portfolio.urls')),
+=======
+    path('work/', include('startteam.urls'), name='startteam'),
+    path('', include('portfolio.urls'), name='portfolio')
+>>>>>>> origin/main
 ]
 
 if settings.DEBUG:

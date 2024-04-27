@@ -13,9 +13,14 @@ def home(request):
     }
     return render(request, 'portfolio/index.html', context)
 
+<<<<<<< HEAD
 
 def login(request):
     return render(request, 'portfolio/login.html')
 
 def signup(request):
     return render(request, 'portfolio/sign.html')
+=======
+def login(request):
+    return render(request, 'portfolio/login.html')
+>>>>>>> origin/main

@@ -86,3 +86,7 @@ def obyekt_status(value, arg):
 @register.filter(name='obyekt_subtract')
 def obyekt_subtract(value, arg):
     return spacecomma(value+arg)
+
+@register.filter(name='only_show_x_words')
+def only_show_x_words(value, x):
+    return ' '.join(value.split()[:x])

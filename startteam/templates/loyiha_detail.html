@@ -1,0 +1,586 @@
+<!-- loyiha.html -->
+{% extends 'base.html' %}
+
+{% block title %}Loyiha haqida batafsil{% endblock %}
+
+{% block styles %}
+<style>
+    /* Add your page-specific styles here */
+    
+    .add-form-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        width: 300px;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .add-form-container .title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .add-form-container .title i {
+        font-size: 24px;
+        margin-right: 10px;
+        color: #3498db; /* Blue color, change as needed */
+    }
+
+    .add-form-container .title h2 {
+        font-size: 18px;
+        margin: 0;
+        color: #333; /* Dark text color, change as needed */
+    }
+
+    .add-form-container .box-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .add-form-container .input-box {
+        margin-bottom: 15px;
+    }
+
+    .add-form-container label {
+        display: block;
+        font-size: 14px;
+        color: #666; /* Gray text color, change as needed */
+        margin-bottom: 5px;
+    }
+
+    .add-form-container input {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc; /* Light border color, change as needed */
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .add-form-container .save {
+        background-color: #38903c; /* Green color, change as needed */
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+    
+
+
+
+
+    .edd-form-container .title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+
+    .edd-form-container .title i {
+        font-size: 24px;
+        margin-right: 10px;
+        color: #3498db; /* Blue color, change as needed */
+    }
+
+    .edd-form-container .title h2 {
+        font-size: 18px;
+        margin: 0;
+        color: #333; /* Dark text color, change as needed */
+    }
+
+    .edd-form-container .box-wrapper {
+        margin-bottom: 20px;
+    }
+
+    .edd-form-container .input-box {
+        margin-bottom: 15px;
+    }
+
+    .edd-form-container label {
+        display: block;
+        font-size: 14px;
+        color: #666; /* Gray text color, change as needed */
+        margin-bottom: 5px;
+    }
+
+    .edd-form-container input {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc; /* Light border color, change as needed */
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .edd-form-container .save {
+        background-color: #38903c; /* Green color, change as needed */
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .table-container {
+        max-height: 300px; /* Adjust the height as needed */
+        overflow: auto;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    tr, th {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+    }
+    tr, td {
+        text-align: center;
+        padding:8px;
+        border: 1px solid #dddddd;
+    }
+    td:first-child {
+        color: green;
+    }
+    .add-button .add-btn {
+        width: 20   0px !important;
+    }
+    .add-button {
+    border: none;
+    padding: 7px 10px;
+    background: var(--primary);
+    color: var(--light);
+    border-radius: 5px;
+    overflow-x: visible;
+    white-space: nowrap;
+    cursor: pointer;
+}
+td {
+    overflow: hidden; /* Hide any content that exceeds the width */
+    text-overflow: ellipsis; /* Show an ellipsis (...) when content overflows */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+}
+        #LoyihaSelect {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            color: #333;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #LoyihaSelect:hover {
+            border-color: #aaa;
+        }
+
+        #LoyihaSelect:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+        }
+        .project-details-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+}
+
+select, textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+</style>
+{% endblock %}
+{% load custom_filters %}
+{% block content %}
+<main data-name="loyiha">
+    <div class="bottom-data">
+        <div class="orders">
+            <div class="header">          
+            <h3><i class='bx bx-receipt'></i> <span style="color: green;">{{ project.name }}</span>  loyihasi haqida batafsil</h3>
+        </div>
+        <div class="project-details-container">
+            <h2>{{ project.name }}</h2>
+            <p><strong>Type:</strong> {{ project.type }}</p>
+            <p><strong>Description:</strong> {{ project.desc_to_workers }}</p>
+            <hr>
+            <form action="" class="project-form" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="position">Choose Position:</label>
+                    <select name="position" id="position">
+                        <option value="position1">Position 1</option>
+                        <option value="position2">Position 2</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Write Message:</label>
+                    <textarea name="message" id="message" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        
+        
+    </div>
+    
+</main>
+
+
+<!-- create -->
+<!-- <div id="productTypeFormContainer" class="add-form-container">
+    <div class="title">
+        <i class='bx bx-detail'></i>
+        <h2>Loyiha turi qo'shish</h2>
+    </div>
+    <form action="create_product_type' %}" class="info" method="post">{% csrf_token %}
+        <div class="box-wrapper">
+            <div class="input-box">
+                <label for="name">Nomini kiritng:</label>
+                <input type="text" id="name" name="name">
+            </div>
+        </div>
+        <button type="submit" class="save">Saqlash</button>
+    </form>
+</div> -->
+<!-- edit -->
+<!-- <div id="editproductTypeFormContainer" class="add-form-container">
+    <div class="title">
+        <i class='bx bx-detail'></i>
+        <h2>Loyiha turini o'zgartirish</h2>
+    </div>
+    <form action="edit_product_type' 0 %}" class="info" method="post" id="editProductTypeForm">{% csrf_token %}
+        <div class="box-wrapper">
+            <div class="input-box">
+                <label for="name">Nomi:</label>
+                <input type="text" id="name" name="name" value="{id}">
+            </div>
+        </div>
+        <button type="submit" class="save">Saqlash</button>
+    </form>
+</div> -->
+
+<!-- create -->
+<div id="productFormContainer" class="add-form-container">
+    <div class="title">
+        <i class='bx bx-detail'></i>
+        <h2>Loyiha ishi qo'shish</h2>
+    </div>
+    <form action="" class="info" method="post">{% csrf_token %}
+        <div class="box-wrapper">
+            <div class="input-box">
+                <label for="loyiha_worker">Loyiha nomi:</label>
+                <select id="loyiha_worker" name="loyiha_worker" style="width: 250px;">
+                    {% for loyiha in loyihas %}
+                        <option value="{{ loyiha.id }}" {% if request.COOKIES.loyiha_id|default:"-1"|add:0 == loyiha.id %} selected {% endif %}>{{ loyiha.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="input-box">
+                <label for="job_type">Ish turi:</label>
+                <select id="job_type" name="job_type" style="width: 250px;">
+                    {% for workeramountjobtype in workeramountjobtypes %}
+                    <option value="{{ workeramountjobtype.name }}">{{ workeramountjobtype.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="input-box">
+                <label for="visible_loyiha">Bog'langan:</label>
+                <input type="checkbox" id="visible_loyiha" name="visible_loyiha" checked>
+            </div>
+            <div class="input-box">
+                <label for="first_price">Admin narx:</label>
+                <input type="text" value="0" min="0" id="first_price" name="first_price">
+            </div>
+            <div class="input-box">
+                <label for="service_price">Xizmat haqqi:</label>
+                <input type="text" value="0" min="0" id="service_price" name="service_price">
+            </div>
+            <div class="input-box">
+                <label for="total_completed">Tugatilganlar soni:</label>
+                <input type="text" value="0" min="0" id="total_completed" name="total_completed">
+            </div>
+            <div class="input-box">
+                <label for="total">Umumiy soni:</label>
+                <input type="text" value="1" min="1" id="total" name="total">
+            </div>
+        </div>
+        <button type="submit" class="save">Saqlash</button>
+    </form>
+</div>
+
+<div id="xujjatFormContainer" class="add-form-container">
+    <div class="title">
+        <i class='bx bxs-file'></i>
+        <h2>Ishchiga xujjat</h2>
+    </div>
+    <form action="" class="info" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <div class="box-wrapper">
+            <div class="input-box">
+                <label for="doc">Xujjat(pdf, doc, rasm, ...):</label>
+                <input type="file" id="doc" name="doc" required>
+            </div>
+        </div>
+        <button type="submit" class="save">Saqlash</button>
+    </form>
+</div>
+
+<div id="xujjat2FormContainer" class="add-form-container">
+    <div class="title">
+        <i class='bx bxs-file'></i>
+        <h2>Loyihaga xujjat</h2>
+    </div>
+    <form action="" class="info" method="post" enctype="multipart/form-data">{% csrf_token %}
+        <div class="box-wrapper">
+            <div class="input-box">
+                <label for="doc">Xujjat(pdf, doc, rasm, ...):</label>
+                <input type="file" id="doc" name="doc" required>
+            </div>
+        </div>
+        <button type="submit" class="save">Saqlash</button>
+    </form>
+</div>
+
+
+<div id="given_moneyFormContainer" class="add-form-container">
+    <div class="title">
+        <i class='bx bx-money'></i>
+        <h2>Olingan summa qo'shish</h2>
+    </div>
+    <form action="" class="info" method="post">{% csrf_token %}
+        <input type="number" value="{{ request.COOKIES.loyiha_id }}" name="loyiha_id" hidden>
+        <div class="box-wrapper">
+            <div class="input-box">
+                <label for="amount">Summa:</label>
+                <input type="text" id="amount" name="amount" required>
+            </div>
+            <div class="input-box">
+                <label for="comment">Izoh:</label>
+                <input type="text" id="comment" name="comment">
+            </div>
+        </div>
+        <button type="submit" class="save">Saqlash</button>
+    </form>
+</div>
+
+<div id="jobTypeFormContainer" class="add-form-container">
+    <div class="title">
+        <i class='bx bx-briefcase'></i>
+        <h2>Ish turi qo'shish</h2>
+    </div>
+    <form action="" class="info" method="post">{% csrf_token %}
+        <div class="box-wrapper">
+            <div class="input-box">
+                <label for="name">Nomi:</label>
+                <input type="text" id="name" name="name">
+            </div>
+        </div>
+        <button type="submit" class="save">Saqlash</button>
+    </form>
+</div>
+
+<!-- edit -->
+<div id="editLoyihaFormContainer" class="add-form-container">
+    <div class="title">
+        <i class='bx bx-detail'></i>
+        <h2>Loyihani o'zgartirish</h2>
+    </div>
+    <form action="" class="info" method="post" id="editLoyihaForm">{% csrf_token %}
+        <div class="box-wrapper">
+            {% if worker_type == 'Admin' %}
+            <div class="box-wrapper">
+                <div class="input-box">
+                    <label for="loyiha_worker">Loyiha nomi:</label>
+                    <select id="loyiha_worker" name="loyiha_worker" style="width: 250px;">
+                        {% for loyiha in loyihas %}
+                            <option value="{{ loyiha.id }}" {% if request.COOKIES.loyiha_id|default:"-1"|add:0 == loyiha.id %} selected {% endif %}>{{ loyiha.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="job_type">Ish turi:</label>
+                    <select id="job_type" name="job_type" style="width: 250px;">
+                        {% for workeramountjobtype in workeramountjobtypes %}
+                        <option value="{{ workeramountjobtype.name }}">{{ workeramountjobtype.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="visible_loyiha">Bog'langan:</label>
+                    <input type="checkbox" id="visible_loyiha" name="visible_loyiha" checked>
+                </div>
+                <div class="input-box">
+                    <label for="first_price">Admin narx:</label>
+                    <input type="text" value="0" min="0" id="first_price" name="first_price">
+                </div>
+                <div class="input-box">
+                    <label for="service_price">Xizmat haqqi:</label>
+                    <input type="text" value="0" min="0" id="service_price" name="service_price">
+                </div>
+                <div class="input-box">
+                    <label for="total_completed">Tugatilganlar soni:</label>
+                    <input type="text" value="0" min="0" id="total_completed" name="total_completed">
+                </div>
+                <div class="input-box">
+                    <label for="total">Umumiy soni:</label>
+                    <input type="text" value="1" min="1" id="total" name="total">
+                </div>
+            </div>
+            {% else %}
+            <label for="">Admin loyihani o'zgartira oladi xolos</label>
+            {% endif %}
+        </div>
+        <button type="submit" class="save">Saqlash</button>
+    </form>
+</div>
+
+
+<div id="editDocFormContainer" class="add-form-container">
+    <div class="title">
+        <i class='bx bx-detail'></i>
+        <h2>Xujjatni o'zgartirish</h2>
+    </div>
+    <form action="" class="info" method="post" id="editLoyihaForm">{% csrf_token %}
+        <div class="box-wrapper">
+            {% if worker_type == 'Admin' %}
+            <div class="box-wrapper">
+                <div class="input-box">
+                    <label for="role">Role:</label>
+                    <select id="role" name="role" style="width: 250px;">
+                        <option value="ishchi">Ishchi</option>
+                        <option value="loyiha">Loyiha</option>
+                    </select>
+                </div>
+            {% else %}
+            <label for="">Admin loyihani o'zgartira oladi xolos</label>
+            {% endif %}
+        </div>
+        <button type="submit" class="save">Saqlash</button>
+    </form>
+</div>
+
+<script>    
+    function toggleForm(formId) {
+        var formContainer = document.getElementById(formId);
+        var currentDisplay = window.getComputedStyle(formContainer).display;
+
+        formContainer.style.display = (currentDisplay === 'none') ? 'block' : 'none';
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        // Find all elements with class 'product-type'
+        var productTypeCells = document.querySelectorAll('.product-type');
+
+        productTypeCells.forEach(function (cell) {
+            cell.addEventListener('click', function () {
+                var productTypeName = cell.textContent.trim();
+                var productTypeId = cell.getAttribute('data-id');
+
+                // Populate the input fields in the edit form
+                var editForm = document.getElementById('editProductTypeForm');
+                var nameInput = editForm.querySelector('#name');
+
+                nameInput.value = productTypeName;
+
+                // Update the form action URL with the product type ID
+                editForm.action = '/loyiha/edit_product_type/' + productTypeId + '/';
+
+                // Show or toggle the edit form as needed
+                toggleForm('editproductTypeFormContainer');
+                document.getElementById('name').focus();
+            });
+        });
+        
+        var docIdCells = document.querySelectorAll('.admin-doc-id');
+    docIdCells.forEach(function (cell) {
+        cell.addEventListener('click', function () {
+            var doc_id = cell.getAttribute('id');
+            var role = document.getElementById(doc_id + 'role').textContent.trim();
+            var doc = document.getElementById(doc_id + 'doc').textContent.trim();
+
+            var editForm = document.getElementById('editDocFormContainer');
+            var docInput = editForm.querySelector('#role');
+            // var roleInput = editForm.querySelector('#doc');
+
+            docInput.value = doc;
+            // roleInput.value = role;
+
+            editForm.action = '/loyiha/edit_doc/' + doc_id + '/';
+            toggleForm('editDocFormContainer');
+        });
+    })
+    });
+    // Find all elements with class 'product-id'
+    var loyihaIdCells = document.querySelectorAll('.work_amount-id');
+    console.log(loyihaIdCells);
+    loyihaIdCells.forEach(function (cell) {
+        cell.addEventListener('click', function () {
+            var loyihaId = cell.getAttribute('id');
+            var job_type = document.getElementById(loyihaId + 'job_type').textContent.trim();
+            var first_price = document.getElementById(loyihaId + 'first_price').textContent.trim();
+            var service_price = document.getElementById(loyihaId + 'service_price').textContent.trim();
+            var total_completed = document.getElementById(loyihaId + 'total_completed').textContent.trim();
+            var total = document.getElementById(loyihaId + 'total').textContent.trim();
+            
+            // Populate the input fields in the edit form
+            var editForm = document.getElementById('editLoyihaForm');
+            var job_typeInput = editForm.querySelector('#job_type');
+            var first_priceInput = editForm.querySelector('#first_price');
+            var service_priceInput = editForm.querySelector('#service_price');
+            var total_completedInput = editForm.querySelector('#total_completed');
+            var totalInput = editForm.querySelector('#total');
+
+            job_typeInput.value = job_type;
+            first_priceInput.value = parseFloat(first_price.replaceAll(',', '').replaceAll(' ', '')); // Convert price to number;;
+            service_priceInput.value = parseFloat(service_price.replaceAll(',', '').replaceAll(' ', '')); // Convert price to number;;
+            total_completedInput.value = parseFloat(total_completed.replaceAll(',', '').replaceAll(' ', '')); // Convert price to number;
+            totalInput.value = parseFloat(total.replaceAll(',', '').replaceAll(' ', '')); // Convert price to number;
+
+            editForm.action = '/loyiha/edit_loyiha_ishi/' + loyihaId + '/';
+            toggleForm('editLoyihaFormContainer');
+        });
+    })
+    document.getElementById('LoyihaSelect').addEventListener('change', function() {
+    var selectedValue = this.value;
+    window.location.href = "".replace('0', selectedValue);
+    });
+
+</script>
+{% endblock %}
