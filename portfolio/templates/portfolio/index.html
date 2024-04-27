@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../../Arsha/assets/img/favicon.png" rel="icon">
+  <link href="/static/images/favicon.png" rel="icon">
   <link href="../../Arsha/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -53,7 +54,7 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Bosh Saxifa</a></li>
           <li><a class="nav-link scrollto" href="#about">Haqida</a></li>
-          <li><a class="nav-link scrollto" h"#services">Service</a></li>
+          <li><a class="nav-link scrollto" href="#services">Service</a></li>
           <li><a class="nav-link   scrollto" href="#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto" href="#team">Jamoa</a></li>
           <li class="dropdown"><a href="#"><span>Yo'nalishlar</span> <i class="bi bi-chevron-down"></i></a>
@@ -335,18 +336,21 @@
           <li data-filter=".filter-web">UI && UX Designer</li>
         </ul>
 
+        {% for p in portfilios %}
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-img"><img src="../../Arsha/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt=""></div>
             <div class="portfolio-info">
-              <h4>App 1</h4>
+              <h4>{{ p.title }}</h4>
               <p>App</p>
               <a href="../../Arsha/assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
                  class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
+
+        {% endfor %}
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-img"><img src="../../Arsha/assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt=""></div>
