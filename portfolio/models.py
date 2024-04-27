@@ -7,6 +7,8 @@ CATEGORY_CHOICES = (
     ('CARD','CARD'),
     ('WEB','WEB'),
     ('BOT', 'BOT'),
+
+
 )
 
 class Team(models.Model):
@@ -26,8 +28,8 @@ class Images(models.Model):
 
 
 class Portfolio(models.Model):
-    title = models.CharField(max_length=10, help_text="Ex: Web1, Web2, App1, Bot1, Card1")
-    category = models.CharField(choices=CATEGORY_CHOICES, max_length=4)
+    title = models.CharField(max_length=100, help_text="Project name")
+    category = models.CharField(max_length=40, help_text="Ex: Web, App, Bot, Card" )
     image = models.FileField(upload_to='portfolio', blank=True)
 
     name = models.CharField(max_length=100, help_text="Category name, Web design, Graphic")
@@ -63,6 +65,7 @@ class Stats(models.Model):
 
     def __str__(self) -> str:
         return self.happy_clients
+
     class Meta:
         verbose_name = 'Status'
         verbose_name_plural = 'Status'

@@ -11,8 +11,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/static/images/favicon.png" rel="icon">
-  <link href="/static/images/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/static/portfolio/img/favicon.png" rel="icon">
+  <link href="/static/portfolio/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link
@@ -20,16 +20,16 @@
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="/static/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="/static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/static/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="/static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="/static/portfolio/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/static/portfolio/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/portfolio/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/static/portfolio/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/static/portfolio/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/static/portfolio/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/static/portfolio/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="/static/css/style.css" rel="stylesheet">
+  <link href="/static/portfolio/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Arsha
@@ -46,7 +46,7 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">Arsha</a></h1>
+      <h1 class="logo me-auto"><a href="index.html">StartWork</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -91,7 +91,7 @@
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src="../../Arsha/assets/img/hero-img.png" class="img-fluid animated" alt="">
+          <img src="/static/portfolio/img/hero-img.png" class="img-fluid animated" alt="">
         </div>
       </div>
     </div>
@@ -108,27 +108,27 @@
         <div class="row" data-aos="zoom-in">
 
           <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="../../Arsha/assets/img/clients/client-1.png" class="img-fluid" alt="">
+            <img src="/static/portfolio/img/clients/client-1.png" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="../../Arsha/assets/img/clients/client-2.png" class="img-fluid" alt="">
+            <img src="/static/portfolio/img/clients/client-2.png" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="../../Arsha/assets/img/clients/client-3.png" class="img-fluid" alt="">
+            <img src="/static/portfolio/img/clients/client-3.png" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="../../Arsha/assets/img/clients/client-4.png" class="img-fluid" alt="">
+            <img src="/static/portfolio/img/clients/client-4.png" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="../../Arsha/assets/img/clients/client-5.png" class="img-fluid" alt="">
+            <img src="/static/portfolio/img/clients/client-5.png" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
-            <img src="../../Arsha/assets/img/clients/client-6.png" class="img-fluid" alt="">
+            <img src="/static/portfolio/img/clients/client-6.png" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -173,7 +173,7 @@
 
     <!-- ======= Why Us Section ======= -->
     <section id="why-us" class="why-us section-bg">
-      <div class="container-fluid" data-aos="fade-up">
+      <div class="container-fluid">
 
         <div class="row">
 
@@ -235,7 +235,7 @@
           </div>
 
           <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img"
-               style='background-image: url("../../Arsha/assets/img/why-us.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
+               style='background-image: url("/static/portfolio/img/why-us.png");' data-aos="zoom-in" data-aos-delay="150">&nbsp;</div>
         </div>
 
       </div>
@@ -314,7 +314,7 @@
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
 
         <div class="section-title">
           <h2>Portfolio</h2>
@@ -336,111 +336,23 @@
           <li data-filter=".filter-web">UI && UX Designer</li>
         </ul>
 
-        {% for p in portfilios %}
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
+        <div class="row portfolio-container"  data-aos-delay="200">
+            {% for i in portfolios %}
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-img"><img src="../../Arsha/assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt=""></div>
+            <div class="portfolio-img"><img src="/static/portfolio/img/portfolio/portfolio-1.jpg" class="img-fluid" alt=""></div>
             <div class="portfolio-info">
               <h4>{{ p.title }}</h4>
               <p>App</p>
-              <a href="../../Arsha/assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
+              <a href="/static/portfolio/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
                  class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
               <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
             </div>
           </div>
+                </div>
 
-        {% endfor %}
+            {% endfor %}
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-img"><img src="../../Arsha/assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="../../Arsha/assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery"
-                 class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-img"><img src="../../Arsha/assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>App 2</h4>
-              <p>App</p>
-              <a href="../../Arsha/assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery"
-                 class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-img"><img src="../../Arsha/assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Card 2</h4>
-              <p>Card</p>
-              <a href="../../Arsha/assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery"
-                 class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-img"><img src="../../Arsha/assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Web 2</h4>
-              <p>Web</p>
-              <a href="../../Arsha/assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery"
-                 class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-img"><img src="../../Arsha/assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>App 3</h4>
-              <p>App</p>
-              <a href="../../Arsha/assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery"
-                 class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-img"><img src="../../Arsha/assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Card 1</h4>
-              <p>Card</p>
-              <a href="../../Arsha/assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery"
-                 class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-img"><img src="../../Arsha/assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Card 3</h4>
-              <p>Card</p>
-              <a href="../../Arsha/assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery"
-                 class="portfolio-lightbox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-img"><img src="../../Arsha/assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h4>Web 3</h4>
-              <p>Web</p>
-              <a href="../../Arsha/assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery"
-                 class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-              <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            </div>
-          </div>
-
-        </div>
 
       </div>
     </section><!-- End Portfolio Section -->
@@ -460,7 +372,7 @@
 
           <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
             <div class="member d-flex align-items-start">
-              <div class="pic"><img src="../../Arsha/assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="/static/portfolio/img/team/team-1.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Walter White</h4>
                 <span>Chief Executive Officer</span>
@@ -477,7 +389,7 @@
 
           <div class="col-lg-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="member d-flex align-items-start">
-              <div class="pic"><img src="../../Arsha/assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="/static/portfolio/img/team/team-2.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Sarah Jhonson</h4>
                 <span>Product Manager</span>
@@ -494,7 +406,7 @@
 
           <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="300">
             <div class="member d-flex align-items-start">
-              <div class="pic"><img src="../../Arsha/assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="/static/portfolio/img/team/team-3.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>William Anderson</h4>
                 <span>CTO</span>
@@ -511,7 +423,7 @@
 
           <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="400">
             <div class="member d-flex align-items-start">
-              <div class="pic"><img src="../../Arsha/assets/img/team/team-4.jpg" class="img-fluid" alt=""></div>
+              <div class="pic"><img src="/static/portfolio/img/team/team-4.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Amanda Jepson</h4>
                 <span>Accountant</span>
@@ -534,7 +446,7 @@
     <!-- ======= Pricing Section ======= -->
     <div>
       <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px;">
-        <h5>Coments</h5>
+        <h5>Tavsiyalar</h5>
         <div>
           <h6 style="display: flex; align-items: center; gap: 10px; cursor: pointer;">See More <i
               class="bi bi-arrow-right"></i></h6>
@@ -542,7 +454,7 @@
       </div>
       <div class="coment">
         <div class="zigzag">
-          <img src='../../Arsha/assets/img/avatar.png' alt="" />
+          <img src='/static/portfolio/img/avatar.png' alt="" />
           <div>
             <h1>Palonchi Pistonchi</h1>
             <h3>Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный
@@ -559,7 +471,7 @@
         </div>
 
         <div class="zigzag">
-          <img src='../../Arsha/assets/img/avatar.png' alt="" />
+          <img src='/static/portfolio/img/avatar.png' alt="" />
           <div>
             <h1>Palonchi Pistonchi</h1>
             <h3>Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный
@@ -576,7 +488,7 @@
         </div>
 
         <div class="zigzag">
-          <img src='../../Arsha/assets/img/avatar.png' alt="" />
+          <img src='/static/portfolio/img/avatar.png' alt="" />
           <div>
             <h1>Palonchi Pistonchi</h1>
             <h3>Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный
@@ -726,7 +638,7 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
@@ -783,7 +695,7 @@
               <div style="display: flex; align-items: center; flex-direction: column;">
                 <div
                   style="background: white; width: 180px; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
-                  <img src="../../Arsha/assets/img/ux.png" style="width: 70%; height: 70%;" alt="">
+                  <img src="/static/portfolio/img/ux.png" style="width: 70%; height: 70%;" alt="">
                 </div>
                 <h5>Frontend</h5>
               </div>
@@ -791,7 +703,7 @@
               <div style="display: flex; align-items: center; flex-direction: column;">
                 <div
                   style="background: white; width: 180px; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
-                  <img src="../../Arsha/assets/img/ux.png" style="width: 70%; height: 70%;" alt="">
+                  <img src="/static/portfolio/img/ux.png" style="width: 70%; height: 70%;" alt="">
                 </div>
                 <h5>Frontend</h5>
               </div>
@@ -799,7 +711,7 @@
               <div style="display: flex; align-items: center; flex-direction: column;">
                 <div
                   style="background: white; width: 180px; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
-                  <img src="../../Arsha/assets/img/ux.png" style="width: 70%; height: 70%;" alt="">
+                  <img src="/static/portfolio/img/ux.png" style="width: 70%; height: 70%;" alt="">
                 </div>
                 <h5>Frontend</h5>
               </div>
@@ -807,7 +719,7 @@
               <div style="display: flex; align-items: center; flex-direction: column;">
                 <div
                   style="background: white; width: 180px; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
-                  <img src="../../Arsha/assets/img/ux.png" style="width: 70%; height: 70%;" alt="">
+                  <img src="/static/portfolio/img/ux.png" style="width: 70%; height: 70%;" alt="">
                 </div>
                 <h5>Frontend</h5>
               </div>
@@ -815,7 +727,7 @@
               <div style="display: flex; align-items: center; flex-direction: column;">
                 <div
                   style="background: white; width: 180px; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
-                  <img src="../../Arsha/assets/img/ux.png" style="width: 70%; height: 70%;" alt="">
+                  <img src="/static/portfolio/img/ux.png" style="width: 70%; height: 70%;" alt="">
                 </div>
                 <h5>Frontend</h5>
               </div>
@@ -823,7 +735,7 @@
               <div style="display: flex; align-items: center; flex-direction: column;">
                 <div
                   style="background: white; width: 180px; height: 180px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
-                  <img src="../../Arsha/assets/img/ux.png" style="width: 70%; height: 70%;" alt="">
+                  <img src="/static/portfolio/img/ux.png" style="width: 70%; height: 70%;" alt="">
                 </div>
                 <h5>Frontend</h5>
               </div>
@@ -893,16 +805,16 @@
       class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="/static/vendor/aos/aos.js"></script>
-  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/static/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="/static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="/static/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="/static/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="/static/vendor/php-email-form/validate.js"></script>
+  <script src="/static/portfolio/vendor/aos/aos.js"></script>
+  <script src="/static/portfolio/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/portfolio/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/static/portfolio/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/static/portfolio/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/static/portfolio/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="/static/portfolio/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="/static/js/main.js"></script>
+  <script src="/static/portfolio/js/main.js"></script>
 
 </body>
 

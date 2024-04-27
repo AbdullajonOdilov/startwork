@@ -1766,25 +1766,24 @@ section {
   }
 }
 
-
 /* for zigzag  */
 .coment{
-  height: 40vh;
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
-  padding: 20px;
+  padding: 10px;
 }
 .zigzag {
   border: none;
   background: #fbfbf8;
   transition: all 0.3s ease;
-  width: 480px;
+  width: 450px;
   display: flex;
   align-items: start;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
   padding: 30px;
   -webkit-mask: conic-gradient( from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50%/20px 100%;
 }
@@ -1812,5 +1811,10 @@ section {
   }
   .zigzag h3{
     width: 300px;
+  }
+  .coment{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
