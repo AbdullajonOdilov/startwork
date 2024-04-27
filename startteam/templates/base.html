@@ -132,15 +132,17 @@
     <div class="sidebar" id="sidebar-left-side">
         <!-- Sidebar content -->
         <a href="" class="logo">
-            <img src="{% static 'work/images/logo.png' %}" style="margin-top: 30px; margin-left: 60px;" height="100" alt="Logo">
+            <img src="{% static 'work/images/logo.png' %}" style="margin-top: 50px; margin-left: 45px;" height="150" alt="Logo">
             <!-- <div class="logo-name" style="margin-top: 10px; margin-left: 10px; font-size: 20px;"><span>Start</span>Work</div> -->
         </a>
-        <ul class="side-menu side-menu-1"> 
+        <ul class="side-menu side-menu-1">
             <!-- bx-calendar-check -->
+            <li data-name="sotish"><a href="{% url 'work:index' %}" style="font-weight: 600; color: blue;"><i class='bx bxs-zap'></i>Loyihalar bo'limi</a></li>
+            <li class="{% if active == 'work-1' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:index' %}"><i class='bx bx-package'></i>Loyihalar</a></li>
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="{% url 'logout_user' %}" class="logout">
+                <a href="{% url 'work:logout_user' %}" class="logout">
                     <i class='bx bx-log-out-circle'></i>
                     Chiqib ketish
                 </a>
@@ -180,40 +182,40 @@
     </script>
     <script>
         // Function to dynamically add an image with the source set to a static file
-        function addImage() {
-            // Create img element
-            var img = document.createElement('img');
-            // Set src attribute to the static file URL
-            img.src = "{% static 'work/images/logo.png' %}";
-            img.height = 100;
+        // function addImage() {
+        //     // Create img element
+        //     var img = document.createElement('img');
+        //     // Set src attribute to the static file URL
+        //     img.src = "{% static 'work/images/logo.png' %}";
+        //     img.height = 100;
             
-            // Get the sidebar left side element by its id
-            var sidebarLeftSide = document.getElementById('sidebar-left-side');
+        //     // Get the sidebar left side element by its id
+        //     var sidebarLeftSide = document.getElementById('sidebar-left-side');
             
-            // Append img element to sidebar left side
-            sidebarLeftSide.appendChild(img);
-        }
+        //     // Append img element to sidebar left side
+        //     sidebarLeftSide.appendChild(img);
+        // }
 
-        // Function to toggle class on the sidebar close button
-        function toggleSidebarClass() {
-            // Get the sidebar close button by its class name
-            var sidebarCloseButton = document.querySelector('.sidebar.close');
-            // Toggle the class on the button
-            sidebarCloseButton.classList.toggle('   ');
+        // // Function to toggle class on the sidebar close button
+        // function toggleSidebarClass() {
+        //     // Get the sidebar close button by its class name
+        //     var sidebarCloseButton = document.querySelector('.sidebar.close');
+        //     // Toggle the class on the button
+        //     sidebarCloseButton.classList.toggle('   ');
             
-            // If the sidebar close button now has the class "sidebar close"
-            if (sidebarCloseButton.classList.contains('sidebar') && sidebarCloseButton.classList.contains('close')) {
-                // Call addImage function to append the image to sidebar-left-side
-                addImage();
-            } else {
-                // Otherwise, remove the image from sidebar-left-side
-                var sidebarLeftSide = document.getElementById('sidebar-left-side');
-                sidebarLeftSide.innerHTML = '';
-            }
-        }
+        //     // If the sidebar close button now has the class "sidebar close"
+        //     if (sidebarCloseButton.classList.contains('sidebar') && sidebarCloseButton.classList.contains('close')) {
+        //         // Call addImage function to append the image to sidebar-left-side
+        //         addImage();
+        //     } else {
+        //         // Otherwise, remove the image from sidebar-left-side
+        //         var sidebarLeftSide = document.getElementById('sidebar-left-side');
+        //         sidebarLeftSide.innerHTML = '';
+        //     }
+        // }
 
-        // Call the functions
-        toggleSidebarClass(); // Toggle class on sidebar close button
+        // // Call the functions
+        // toggleSidebarClass(); // Toggle class on sidebar close button
 
         document.addEventListener('DOMContentLoaded', function () {
             // Find table elements

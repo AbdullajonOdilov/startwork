@@ -24,6 +24,7 @@ def create_sample_data():
     # Create Projects
     for i in range(1, 11):
         project = Projects.objects.create(
+            type=f'Project type {i}',
             name=f'Project {i}',
             contacts=f'Contacts {i}',
             desc=f'Description {i}',
@@ -31,8 +32,6 @@ def create_sample_data():
             price=1000 * i,
             status='STARTED' if i % 2 == 0 else 'INPROGRESS',
             paid_money=500 * i,
-            start_date=datetime.now(),
-            end_date=datetime.now()
         )
         project.images.add(Images.objects.get(pk=i))
 

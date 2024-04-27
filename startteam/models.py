@@ -95,6 +95,7 @@ class Orders(models.Model):
 
 
 class Team(models.Model):
+    name = models.CharField(max_length=255)
     team_lead = models.ForeignKey(User, on_delete=models.CASCADE, related_name='leading_teams')
     project_id = models.ForeignKey(Projects, on_delete=models.CASCADE)
     workers_id = models.ManyToManyField(User, related_name='teams')
@@ -105,7 +106,7 @@ class Team(models.Model):
     date = models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.role
+        return self.name
 
 
 class Telegram(models.Model):

@@ -148,8 +148,7 @@
         text-align: center;
         padding:8px;
     }
-    td:nth-child(1),
-    td:nth-child(2) {
+    td:nth-child(3) {
         color: green;
     }
     .add-button .add-btn {
@@ -185,7 +184,7 @@ td {
                   <a href="{% url 'main_app:end_job' %}" class="add-button add-btn">Ishni tugatish</a>
                   {% endif %}
                 {% endif %}
-                  <i class='bx bx-euro'></i>
+                  <i class='bx bx-package'></i>
                   <h3>Loyihalar</h3>
                   <!-- <input type="text" class="product_search" placeholder="Mahsulot nomi"> -->
                   <input type="text" placeholder="Qidiruv .." id="myInput2" onkeyup="filterFunction2()" style="max-width: 300px;">
@@ -199,25 +198,29 @@ td {
                   </select>
                   
                       <button onclick="myFunction()" class="dropbtn add-button add-btn" style="display: none;">Qidirish</button>
-                      <div id="myDropdown" class="dropdown-content">  
+                      <div id="myDropdown" class="dropdown-content">
                         <input type="text" placeholder="Qidiruv .." id="myInput" onkeyup="filterFunction()">
                         <table>
                           <thead>
                             <tr>
                               <th><center style="font-size: 18px !important;">№</center></th>
-                              <th><center style="font-size: 18px !important;">Mahsulot turi</center></th>
+                              <th><center style="font-size: 18px !important;">Yo'nalish</center></th>
                               <th><center style="font-size: 18px !important;">Nomi</center></th>
+                              <th><center style="font-size: 18px !important;">Qisqacha</center></th>
                               <th><center style="font-size: 18px !important;">Narxi</center></th>
+                              <th><center style="font-size: 18px !important;">Sana</center></th>
                             </tr>
                           </thead>
                           <tbody id="myDropdown">
                             {% for project in projects %}
 
-                              <tr style="color: green;" style="margin-left: 10px;" data-product-id="{{ project.id }}" data-product-name="{{ project.name }}" data-product-price="{{ project.price }}" data-product-profit="{{ project.profit_percentage }}" data-product-type="{{ project.type.name }}" data-product-remain="{{ project.remain }}">
-                                <td>{{ forloop.counter }}</td>
-                                <td>{{ project.type.name|capfirst }}</td>
-                                <td>{{ project.name|capfirst }}</td>
-                                <td>{{ project.price|spacecomma }} so'm</td>
+                              <tr style="color: green;" style="margin-left: 10px;" data-project-id="{{ project.id }}" data-project-name="{{ project.name }}" data-project-price="{{ project.price }}" data-project-type="{{ project.type }}">
+                                <td><center>{{ forloop.counter }}</center></td>
+                                <td><center>{{ project.type }}</center></td>
+                                <td><center>{{ project.name }}</center></td>
+                                <td><center>{{ project.desc_to_workers }}</center></td>
+                                <td style="max-width: 75px !important;"><center>{{ project.price|spacecomma }}</center></td>
+                                <td><center>{{ project.date | date:"D d M Y H:i:s" }}</center></td>
                             </tr>
                           {% endfor %}
                           </tbody>
@@ -245,8 +248,8 @@ td {
                         <tr>
                           <td><center>{{ forloop.counter }}</center></td>
                           <td><center>{{ project.type }}</center></td>
-                          <td><center>{{ project.name }}</center></td>
-                          <td><center>{{ project.desc_to_workers }}</center></td>
+                          <td><center><a href="{% url 'work:project_details_view' project.id %}" class="project-link" data-project-id="{{ project.id }}">{{ project.name }}</a></center></td>
+                          <td><center>{{ project.desc_to_workers| only_show_x_words:10 }}</center></td>
                           <td style="max-width: 75px !important;"><center>{{ project.price|spacecomma }}</center></td>
                           <td><center>{{ project.date | date:"D d M Y H:i:s" }}</center></td>
                         </tr>
@@ -258,14 +261,17 @@ td {
                     <!-- <p style="margin: 10px 0;font-weight: 600; font-size: 20px;">Umumiy summa: <span id="totalAmount" style="color: green;">0</span> so'm</p>
                     <button type="submit" class="dropbtn add-button add-btn" style="padding: 10px 30px;">Sotish</button> -->
                 </div>
-                <!-- Hidden input fields to store selected product data -->
+                <!-- Hidden input fields to store selected project data -->
                 <input type="hidden" name="selected_products" id="selectedProducts" value="">
             </form>
         </div>
     </div>
 </main>
 
+
+
 <script>
+  
   function myFunction() {
     if(document.getElementById("myDropdown").style.display=='block') {
       document.getElementById("myDropdown").style.display='none';
@@ -309,12 +315,10 @@ if (dropdown.style.display === "none" || dropdown.style.display === "") {
     for (i = 0; i < a.length; i++) {
         var row = a[i];
         var secondTd = row.getElementsByTagName("td")[0];
-        console.log(secondTd);
         if (secondTd) {
             var txtValue = row.textContent || row.innerText;
             var secondTdText = secondTd.textContent || secondTd.innerText;
-
-            if (txtValue.toUpperCase().indexOf(filter) > -1 && (secondTdText.toUpperCase() === filter2 || filter2 === "HAMMA MAHSULOTLAR")) {
+            if (txtValue.toUpperCase().indexOf(filter) > -1 && (secondTdText.toUpperCase() === filter2 || filter2 === "BARCHA LOYIHALAR" || txtValue.toUpperCase().indexOf(filter2) > -1)) {
                 row.style.display = "";
             } else {
                 row.style.display = "none";
@@ -324,19 +328,17 @@ if (dropdown.style.display === "none" || dropdown.style.display === "") {
     calculateTotal();
 }
 
-
-// Add a click event listener to each product link
-  document.querySelectorAll('.dropdown-content tr').forEach(function(link) {
+document.querySelectorAll('.dropdown-content tr').forEach(function(link) {
       link.addEventListener('click', function(event) {
           event.preventDefault(); // Prevent the default link behavior
 
           // Extract data attributes
-          var productId = this.getAttribute('data-product-id');
-          var productName = this.getAttribute('data-product-name');
-          var productPrice = this.getAttribute('data-product-price');
-          var productProfit = parseFloat(this.getAttribute('data-product-profit'));
-          var productType = this.getAttribute('data-product-type');
-          var productRemain = this.getAttribute('data-product-remain');
+          var productId = this.getAttribute('data-project-id');
+          var productName = this.getAttribute('data-project-name');
+          var productPrice = this.getAttribute('data-project-price');
+          var productProfit = parseFloat(this.getAttribute('data-project-profit'));
+          var productType = this.getAttribute('data-project-type');
+          var productRemain = this.getAttribute('data-project-remain');
           var inputNameToCheck = 'quantity;' + productId;
           var realPrice = parseFloat(productPrice) * (100 + productProfit) / 100;
 
@@ -344,7 +346,7 @@ if (dropdown.style.display === "none" || dropdown.style.display === "") {
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
             <td><center>${productType}</center></td>
-            <td data-product-real-price='${realPrice}'><center>${productName}</center></td>
+            <td data-project-real-price='${realPrice}'><center>${productName}</center></td>
             <td><center><input type="number" name="quantity;${productId}" id="${productId}" value="1" min="1" max="${productRemain}" class="product_search"></center></td>
             <td><center>${productRemain}</center></td>
             `;
@@ -374,7 +376,7 @@ if (dropdown.style.display === "none" || dropdown.style.display === "") {
     // Iterate through each input and calculate the total amount
     inputs.forEach(function(input) {
         var quantity = parseInt(input.value);
-        var price = parseInt(input.closest('tr').querySelector('td:nth-child(2)').getAttribute('data-product-real-price'));
+        var price = parseInt(input.closest('tr').querySelector('td:nth-child(2)').getAttribute('data-project-real-price'));
         // Check if the quantity and price are valid numbers
         if (!isNaN(quantity) && !isNaN(price)) {
             totalAmount += quantity * price;

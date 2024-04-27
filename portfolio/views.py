@@ -12,3 +12,6 @@ def home(request):
 
     }
     return render(request, 'portfolio/index.html', context)
+
+def login(request):
+    return render(request, 'portfolio/login.html')
