@@ -22,7 +22,9 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('work/', include('startteam.urls')),
-    path('', include('portfolio.urls'))
+    path('', include('portfolio.urls')),
+    path('login/', include('portfolio.urls')),
+    path('register/', include('portfolio.urls')),
 ]
 
 if settings.DEBUG:
