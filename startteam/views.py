@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .models import Projects, Proposal
+from .models import Projects, Proposal, Team
 from django.contrib import messages
+from django.db.models import Q
+
 
 
 def index(request):
@@ -46,3 +48,13 @@ def logout_user(request):
     for cookie in request.COOKIES:
         response.delete_cookie(cookie)
     return response
+
+def jamoalar(request):
+    teams = Team.objects.filter(Q(team_lead=request.user) | Q(workers_id=request.user))
+    print(teams)
+    context = {
+        "teams": teams,
+        "active": "work-3",
+    }
+    return render(request, 'jamoalar.html', context=context)
+

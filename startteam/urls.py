@@ -9,6 +9,8 @@ urlpatterns = [
     path('work-detail/<int:project_id>/', project_details_view, name='project_details_view'),
     path('proposal/<int:project_id>/', proposal, name='proposal'),
     path('proposal_view', proposal_view, name='proposal_view'),
+    path('jamoalar', jamoalar, name='jamoalar'),
+    
 
     
 ]

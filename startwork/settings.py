@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -139,3 +140,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'startteam.User'
+JAZZMIN_SETTINGS = {
+    "site_brand": "Startwork Admin",
+    "welcome_sign": "Startwork adminiga xush kelibsiz!",
+    "site_title": "Startwork admin paneli",
+    "site_header": "Startwork",
+    "changeform_format": "collapsible",
+    "copyright": "Startwork",
+}

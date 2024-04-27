@@ -45,11 +45,14 @@ class User(AbstractUser):
     education = models.CharField(max_length=400,  blank=True, null=True)
     accepted = models.BooleanField(default=False)
     
-
+    class Meta:
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
+    
     objects = CustomUserManager()
 
     def __str__(self) -> str:
-        return self.full_name
+        return self.full_name + ' - ' + self.position
 
     def has_workers(self):
         return self.workers.exists()
