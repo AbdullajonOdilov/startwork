@@ -193,8 +193,8 @@ td {
                   <div class="dropdown">
                     <select id="myselect2" class="button_cool" title="Loyiha turi bo'yicha saralash" style="width: 210px;" onchange="filterFunction2()">
                       <option value="0" {% if request.COOKIES.product_type == 0 %}selected {% endif %}>Barcha loyihalar</option>
-                      {% for product_type in product_types %}
-                          <option value="{{ product_type.id }}" {% if request.COOKIES.product_type == product_type.id|stringformat:"s" %}selected {% endif %}>{{ product_type.name }}</option>
+                      {% for product_type in project_types %}
+                          <option value="{{ product_type }}" {% if request.COOKIES.product_type == product_type|stringformat:"s" %}selected {% endif %}>{{ product_type }}</option>
                       {% endfor %}
                   </select>
                   
@@ -211,16 +211,14 @@ td {
                             </tr>
                           </thead>
                           <tbody id="myDropdown">
-                            {% for product in projects %}
+                            {% for project in projects %}
 
-                            {% if product.remain > 0 %}
-                              <tr style="color: green;" style="margin-left: 10px;" data-product-id="{{ product.id }}" data-product-name="{{ product.name }}" data-product-price="{{ product.price }}" data-product-profit="{{ product.profit_percentage }}" data-product-type="{{ product.type.name }}" data-product-remain="{{ product.remain }}">
+                              <tr style="color: green;" style="margin-left: 10px;" data-product-id="{{ project.id }}" data-product-name="{{ project.name }}" data-product-price="{{ project.price }}" data-product-profit="{{ project.profit_percentage }}" data-product-type="{{ project.type.name }}" data-product-remain="{{ project.remain }}">
                                 <td>{{ forloop.counter }}</td>
-                                <td>{{ product.type.name|capfirst }}</td>
-                                <td>{{ product.name|capfirst }}</td>
-                                <td>{{ product.price|real_money:product.profit_percentage }} so'm</td>
+                                <td>{{ project.type.name|capfirst }}</td>
+                                <td>{{ project.name|capfirst }}</td>
+                                <td>{{ project.price|spacecomma }} so'm</td>
                             </tr>
-                            {% endif %}
                           {% endfor %}
                           </tbody>
                       </table>
@@ -242,18 +240,16 @@ td {
                         </tr>
                     </thead>
                     <tbody id="myDropdown2">
-                      {% for product in products %}
-                      {% if product.remain > 0 %}
+                      {% for project in projects %}
                       <tr>
                         <tr>
                           <td><center>{{ forloop.counter }}</center></td>
-                          <td><center>{{ product.type.name }}</center></td>
-                          <td data-product-real-price='{{ product.price|real_money:product.profit_percentage }}'><center>{{ product.name }}</center></td>
-                          <td style="max-width: 75px !important;"><center>{{ product.price|real_money:product.profit_percentage }}</center></td>
-                          <td style="max-width: 75px !important;"><center><input type="number" name="quantity;{{ product.id }}" id="{{ product.id }}" value="0" min="0" max="{{ product.remain }}" class="product_search" onchange="calculateTotal"></center></td>
-                          <td><center>{{ product.remain|spacecomma }}</center></td>
+                          <td><center>{{ project.type }}</center></td>
+                          <td><center>{{ project.name }}</center></td>
+                          <td><center>{{ project.desc_to_workers }}</center></td>
+                          <td style="max-width: 75px !important;"><center>{{ project.price|spacecomma }}</center></td>
+                          <td><center>{{ project.date | date:"D d M Y H:i:s" }}</center></td>
                         </tr>
-                        {% endif %}
                       {% endfor %}
                     </tbody>
                 </table>

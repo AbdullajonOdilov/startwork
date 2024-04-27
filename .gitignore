@@ -266,6 +266,9 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/python,django
 # Django migrations
 **/migrations/
+**/**/migrations/
+**/**/**/migrations/
+**/**/**/**/migrations/
 
 # Python cache files
 *.pyc

@@ -63,6 +63,7 @@ class Images(models.Model):
 
 
 class Projects(models.Model):
+    type = models.CharField(max_length=200, null=True, blank=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     contacts = models.CharField(max_length=900)
     desc = models.TextField(blank=True, null=True)
