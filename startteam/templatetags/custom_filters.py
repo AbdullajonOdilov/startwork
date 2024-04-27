@@ -4,6 +4,7 @@ register = template.Library()
 
 @register.filter(name='spacecomma')
 def spacecomma(value):
+    value = int(value)
     s_text = ''
     money = str(value)[::-1]
     for i in range(len(money)//3+1):

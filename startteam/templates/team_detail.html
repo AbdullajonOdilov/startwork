@@ -189,7 +189,7 @@ td {
         border-color: #4CAF50;
         box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
     }
-    .project-details-container {
+    .team-details-container {
     max-width: 1200px;
     /* margin: 0 auto; */
     padding: 0 20px;
@@ -228,7 +228,7 @@ button:hover {
     color: #00363A;
     border: 1px solid #00363A;
 }
-.project-images {
+.team-images {
     display: flex;
     flex-wrap: wrap;
 }
@@ -246,7 +246,6 @@ button:hover {
     width: 100%; /* Make the image fill the container */
     height: auto; /* Maintain aspect ratio */
 }
-
 </style>
 {% endblock %}
 {% load custom_filters %}
@@ -255,35 +254,51 @@ button:hover {
     <div class="bottom-data">
         <div class="orders">
             <div class="header">          
-            <!-- <h3><i class='bx bx-receipt'></i> <span style="color: green;">{{ project.name }}</span>  loyihasi haqida batafsil</h3> -->
+            <!-- <h3><i class='bx bx-receipt'></i> <span style="color: green;">{{ team.name }}</span>  loyihasi haqida batafsil</h3> -->
         </div>
-        <div class="project-details-container" style="line-height: 2;">
-            <h2 style="font-weight: 400; font-size: 40px; line-height: 2;">{{ project.name }} - loyiha haqida batafsil</h2> 
-            <p style="line-height: 2; font-size: 20px;"><strong style="font-size: 20px; font-weight: 600;">Loyiha turi:</strong> &nbsp;&nbsp;{{ project.type }} <br> <strong style="font-size: 20px; font-weight: 600;">Muddat: </strong> &nbsp;&nbsp;{{ project.duration }} <br><strong style="font-size: 20px; font-weight: 600;">Umumiy narx: </strong> &nbsp;&nbsp;{{ project.price|spacecomma }} - so'm</p>
-            <p style="line-height: 2;"><strong style="font-size: 20px; font-weight: 600;">Batafsil:</strong> <br>{{ project.desc_to_workers|linebreaks }}</p>
-            {% if project.images %}
+        <div class="team-details-container" style="line-height: 2; margin: 0 50px;">
+            <h2 style="font-weight: 400; font-size: 40px; line-height: 2;">{{ team.name }} - jamoasi</h2> 
+            <p style="line-height: 2; font-size: 20px;">
+                <my_team style="{% if team.team_lead.id == request.user.id %} color: green; {% endif %}">
+                    <strong style="font-size: 20px; font-weight: 600;">Team lead:</strong> &nbsp;&nbsp;{% if team.team_lead.image %}<img src="{{ team.team_lead.image.url }}" class="avatar" alt="{{ team.team_lead }} Image">{% endif %} {{ team.team_lead }}<br> 
+                </my_team>
+                {% for user in team.workers_id.all %}
+                {% if user.id != team.team_lead.id %}
+                <my_team style="{% if user.id == request.user.id %} color: green; {% endif %}">
+                    <strong style="font-size: 20px; font-weight: 600;">{{ forloop.counter }} - azo: </strong> &nbsp;&nbsp;
+                    {% if user.image %}
+                        <img src="{{ user.image.url }}" class="avatar" alt="{{ user.username }} Image">
+                    {% endif %}
+                    {{ user }} <br>
+                </my_team>
+                {% endif %}
+                {% endfor %}
+                <strong style="font-size: 20px; font-weight: 600;">Summa: </strong> &nbsp;&nbsp;{{ team.paid_money|spacecomma }} / {{ team.summa|spacecomma }} - so'm</p>
+            <p style="line-height: 2;"><strong style="font-size: 20px; font-weight: 600;">Telegram:</strong> &nbsp;&nbsp;<a href="{{ project.telegram_group }}" style="font-size: 20px;" class="project-link" data-project-id="{{ project.id }}">Link</a></p>
+            <p style="line-height: 2;"><strong style="font-size: 20px; font-weight: 600;">Batafsil:</strong> <br>{{ team.project_id.desc_to_workers|linebreaks }}</p>
+            {% if team.images %}
             <p style="line-height: 2;"><strong style="font-size: 20px; font-weight: 600;">Loyiha rasmlari:</strong> </p>
-            <div class="project-images">
-                {% for image in project.images.all %}
+            <div class="team-images">
+                {% for image in team.images.all %}
                     <div class="image-container">
-                        <img src="{{ image.image.url }}"  alt="Product Image">
+                        <img src="{{ image.image.url }}" alt="Product Image">
                     </div>
                 {% endfor %}
             </div>
-            <br>
             {% endif %}
+            <br>
             
             
             <hr>
             <br>
-            <form style="line-height: 2;" action="{% url 'work:proposal' project.id %}" class="project-form" method="post">
+            <!-- <form style="line-height: 2;" action="{% url 'work:proposal' team.id %}" class="team-form" method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="message" style="line-height: 2; font-size: 25px; font-weight: 400;">Qiziqgan bo'lsangiz bizga xabar qoldiring:</label>
                     <textarea name="message" id="message" rows="5" placeholder="Xabar matni" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            </form> -->
             <br>
         </div>
         

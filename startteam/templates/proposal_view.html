@@ -207,7 +207,7 @@ td {
                         <tr>
                           <td><center>{{ forloop.counter }}</center></td>
                           <td><center><a href="{% url 'work:project_details_view' project.project.id %}" class="project-link" data-project-id="{{ project.project.id }}">{{ project.project.name }}</a></center></td>
-                          <td style="max-width: 75px !important;"><center>{{ project.project.price|spacecomma }}</center></td>
+                          <td style="max-width: 75px !important;"><center>{{ project.project.price|spacecomma }} so'm</center></td>
                           <td><center>{{ project.joined| bool_to_word }}</center></td>
                           <td><center>{{ project.date | date:"D d M Y H:i:s" }}</center></td>
                           <td style="text-align: left;">{{ project.message| only_show_x_words:10 }}</td>

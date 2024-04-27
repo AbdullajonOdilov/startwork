@@ -132,3 +132,26 @@ class Proposal(models.Model):
     class Meta:
         verbose_name = 'Proposal'
         verbose_name_plural = 'Proposals'
+
+class Task(models.Model):
+    name = models.CharField(max_length=200)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    duration = models.CharField(max_length=200)
+    desc = models.TextField(max_length=1000)
+    start_date = models.DateTimeField(auto_now_add=True)
+    PROGRESS_CHOICES = (
+        ('Boshlanmagan', 'Boshlanmagan'),
+        ('Jarayonda', 'Jarayonda'),
+        ('Tugallangan', 'Tugallangan'),
+        ('Kechiktirilgan', 'Kechiktirilgan'),
+    )
+
+    # Define progress field with choices
+    progress = models.CharField(max_length=20, choices=PROGRESS_CHOICES, default='Boshlanmagan')
+
+class Tranzaksiyalar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    summa = models.FloatField(default=0)
+    chek = models.FileField(upload_to='transactions/', blank=True, null=True)
+    date = models.DateTimeField(auto_now_add=True)

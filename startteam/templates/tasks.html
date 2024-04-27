@@ -1,7 +1,7 @@
 <!-- dokon.html -->
 {% extends 'base.html' %}
 
-{% block title %}Loyihalar{% endblock %}
+{% block title %}Vazifalar{% endblock %}
 
 {% block styles %}
 <style>
@@ -185,19 +185,19 @@ td {
                   {% endif %}
                 {% endif %}
                   <i class='bx bx-package'></i>
-                  <h3>Loyihalar</h3>
+                  <h3>Vazifalar</h3>
                   <!-- <input type="text" class="product_search" placeholder="Mahsulot nomi"> -->
-                  <input type="text" placeholder="Qidiruv .." id="myInput2" onkeyup="filterFunction2()" style="max-width: 300px;">
+                  <!-- <input type="text" placeholder="Qidiruv .." id="myInput2" onkeyup="filterFunction2()" style="max-width: 300px;"> -->
 
                   <div class="dropdown">
-                    <select id="myselect2" class="button_cool" title="Loyiha turi bo'yicha saralash" style="width: 210px;" onchange="filterFunction2()">
+                    <!-- <select id="myselect2" class="button_cool" title="Loyiha turi bo'yicha saralash" style="width: 210px;" onchange="filterFunction2()">
                       <option value="0" {% if request.COOKIES.product_type == 0 %}selected {% endif %}>Barcha loyihalar</option>
                       {% for product_type in project_types %}
                           <option value="{{ product_type }}" {% if request.COOKIES.product_type == product_type|stringformat:"s" %}selected {% endif %}>{{ product_type }}</option>
                       {% endfor %}
-                  </select>
+                  </select> -->
                   
-                      <button onclick="myFunction()" class="dropbtn add-button add-btn" style="display: none;">Qidirish</button>
+                      <!-- <button onclick="myFunction()" class="dropbtn add-button add-btn" style="display: none;">Qidirish</button>
                       <div id="myDropdown" class="dropdown-content">
                         <input type="text" placeholder="Qidiruv .." id="myInput" onkeyup="filterFunction()">
                         <table>
@@ -225,7 +225,7 @@ td {
                           {% endfor %}
                           </tbody>
                       </table>
-                      </div>
+                      </div> -->
                     </div>
                 </div>
             <form action="" method="post" enctype="multipart/form-data" class="form" id="productForm">
@@ -235,23 +235,28 @@ td {
                     <thead>
                         <tr>
                             <th><center style="font-size: 18px !important;">№</center></th>
-                            <th><center style="font-size: 18px !important;">Yo'nalish</center></th>
                             <th><center style="font-size: 18px !important;">Nomi</center></th>
-                            <th><center style="font-size: 18px !important;">Narxi</center></th>
+                            <th><center style="font-size: 18px !important;">Loyiha</center></th>
+                            <th><center style="font-size: 18px !important;">Jamoa</center></th>
+                            <th><center style="font-size: 18px !important;">Holati</center></th>
+                            <th><center style="font-size: 18px !important;">Muddat</center></th>
+                            <th><center style="font-size: 18px !important;">Telegram</center></th>
                             <th><center style="font-size: 18px !important;">Sana</center></th>
-                            <th style="font-size: 18px !important;">Qisqacha</th>
                         </tr>
                     </thead>
                     <tbody id="myDropdown2">
-                      {% for project in projects %}
+                      {% for project in tasks %}
                       <tr>
                         <tr>
                           <td><center>{{ forloop.counter }}</center></td>
-                          <td><center>{{ project.type }}</center></td>
-                          <td><center><a href="{% url 'work:project_details_view' project.id %}" class="project-link" data-project-id="{{ project.id }}">{{ project.name }}</a></center></td>
-                          <td style="max-width: 75px !important;"><center>{{ project.price|spacecomma }} so'm</center></td>
-                          <td><center>{{ project.date | date:"D d M Y H:i:s" }}</center></td>
-                          <td style="text-align: left;">{{ project.desc_to_workers| only_show_x_words:10 }}</td>
+                          <td><center><a href="{% url 'work:task_details_view' project.id %}" class="project-link" data-project-id="{{ project.id }}">{{ project.name }}</a></center></td>
+                          <td><center><a href="{% url 'work:project_details_view' project.team.project_id.id %}" class="project-link" data-project-id="{{ project.team.project_id.id }}">{{ project.team.project_id.name }}</a></center></td>
+                          <td><center><a href="{% url 'work:team_details_view' project.team.id %}" class="project-link" data-project-id="{{ project.team.id }}">{{ project.team.name }}</a></center></td>
+                          <td><center>{{ project.progress  }}</center></td>
+                          <td><center>{{ project.duration  }}</center></td>
+                          <td><center><a href="{{ project.team.telegram_group }}" class="project-link" data-project-id="{{ project.team.id }}">Link</a></center></td>
+
+                          <td><center>{{ project.start_date | date:"D d M " }}</center></td>
                         </tr>
                       {% endfor %}
                     </tbody>

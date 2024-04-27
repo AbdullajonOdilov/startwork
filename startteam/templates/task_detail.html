@@ -254,13 +254,15 @@ button:hover {
 <main data-name="loyiha">
     <div class="bottom-data">
         <div class="orders">
-            <div class="header">          
+            <div class="header">
             <!-- <h3><i class='bx bx-receipt'></i> <span style="color: green;">{{ project.name }}</span>  loyihasi haqida batafsil</h3> -->
         </div>
         <div class="project-details-container" style="line-height: 2;">
-            <h2 style="font-weight: 400; font-size: 40px; line-height: 2;">{{ project.name }} - loyiha haqida batafsil</h2> 
-            <p style="line-height: 2; font-size: 20px;"><strong style="font-size: 20px; font-weight: 600;">Loyiha turi:</strong> &nbsp;&nbsp;{{ project.type }} <br> <strong style="font-size: 20px; font-weight: 600;">Muddat: </strong> &nbsp;&nbsp;{{ project.duration }} <br><strong style="font-size: 20px; font-weight: 600;">Umumiy narx: </strong> &nbsp;&nbsp;{{ project.price|spacecomma }} - so'm</p>
-            <p style="line-height: 2;"><strong style="font-size: 20px; font-weight: 600;">Batafsil:</strong> <br>{{ project.desc_to_workers|linebreaks }}</p>
+            <h2 style="font-weight: 400; font-size: 40px; line-height: 2;">{{ task.name }} - task haqida batafsil</h2> 
+            <p style="line-height: 2; font-size: 20px;"><strong style="font-size: 20px; font-weight: 600;">Loyiha nomi:</strong> &nbsp;&nbsp;{{ task.team.project_id.name }} <br> <strong style="font-size: 20px; font-weight: 600;">Muddat: </strong> &nbsp;&nbsp;{{ task.duration }} <br>
+                <strong style="font-size: 20px; font-weight: 600;">Holati: </strong> &nbsp;&nbsp;{{ task.progress }} <br>
+            </p>
+            <p style="line-height: 2;"><strong style="font-size: 20px; font-weight: 600;">Batafsil:</strong> <br>{{ task.desc|linebreaks }}</p>
             {% if project.images %}
             <p style="line-height: 2;"><strong style="font-size: 20px; font-weight: 600;">Loyiha rasmlari:</strong> </p>
             <div class="project-images">
@@ -270,17 +272,21 @@ button:hover {
                     </div>
                 {% endfor %}
             </div>
-            <br>
             {% endif %}
+            <br>
             
             
             <hr>
             <br>
-            <form style="line-height: 2;" action="{% url 'work:proposal' project.id %}" class="project-form" method="post">
+            <form style="line-height: 2;" action="{% url 'work:task_details_view' task.id %}" class="project-form" method="post">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="message" style="line-height: 2; font-size: 25px; font-weight: 400;">Qiziqgan bo'lsangiz bizga xabar qoldiring:</label>
-                    <textarea name="message" id="message" rows="5" placeholder="Xabar matni" required></textarea>
+                    <label for="message" style="line-height: 2; font-size: 25px; font-weight: 400;">Task holatini o'zgartirish:</label>
+                    <select id="id_progress" name="progress" style="width: 200px;">
+                        {% for value, display_name in progress_choices %}
+                            <option value="{{ value }}" {% if value == form.instance.progress %}selected{% endif %}>{{ display_name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

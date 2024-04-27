@@ -235,23 +235,26 @@ td {
                     <thead>
                         <tr>
                             <th><center style="font-size: 18px !important;">№</center></th>
-                            <th><center style="font-size: 18px !important;"></center></th>
                             <th><center style="font-size: 18px !important;">Nomi</center></th>
-                            <th><center style="font-size: 18px !important;">Narxi</center></th>
+                            <th><center style="font-size: 18px !important;">Loyiha</center></th>
+                            <th><center style="font-size: 18px !important;">Jamoa sardori</center></th>
+                            <th><center style="font-size: 18px !important;">Ish holati</center></th>
+                            <th><center style="font-size: 18px !important;">Telegram</center></th>
                             <th><center style="font-size: 18px !important;">Sana</center></th>
-                            <th style="font-size: 18px !important;">Qisqacha</th>
                         </tr>
                     </thead>
                     <tbody id="myDropdown2">
-                      {% for project in projects %}
+                      {% for project in teams %}
                       <tr>
                         <tr>
                           <td><center>{{ forloop.counter }}</center></td>
-                          <td><center>{{ project.type }}</center></td>
-                          <td><center><a href="{% url 'work:project_details_view' project.id %}" class="project-link" data-project-id="{{ project.id }}">{{ project.name }}</a></center></td>
-                          <td style="max-width: 75px !important;"><center>{{ project.price|spacecomma }}</center></td>
-                          <td><center>{{ project.date | date:"D d M Y H:i:s" }}</center></td>
-                          <td style="text-align: left;">{{ project.desc_to_workers| only_show_x_words:10 }}</td>
+                          <td><center><a href="{% url 'work:team_details_view' project.id %}" class="project-link" data-project-id="{{ project.id }}">{{ project.name }}</a></center></td>
+                          <td><center><a href="{% url 'work:project_details_view' project.project_id.id %}" class="project-link" data-project-id="{{ project.project_id.id }}">{{ project.project_id.name }}</a></center></td>
+                          <td><center>{{ project.team_lead }}</center></td>
+                          <td><center>{{ project.status| bool_to_word  }}</center></td>
+                          <td><center><a href="{{ project.telegram_group }}" class="project-link" data-project-id="{{ project.id }}">Link</a></center></td>
+
+                          <td><center>{{ project.date | date:"D d M " }}</center></td>
                         </tr>
                       {% endfor %}
                     </tbody>

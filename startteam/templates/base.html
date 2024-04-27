@@ -124,6 +124,12 @@
     margin-left: 0;
   }
 }
+.avatar {
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
     </style>
 </head>
 
@@ -143,11 +149,11 @@
 
             <li data-name="eski"><a href="{% url 'work:jamoalar' %}" style="font-weight: 600; color: blue;"><i class='bx bxs-package'></i>Ishlar bo'limi</a></li>
             <li class="{% if active == 'work-3' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:jamoalar' %}"><i class='bx bx-detail'></i>Jamoalar</a></li>
-            <li class="{% if active == 'work-4' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:index' %}"><i class='bx bx-cube'></i>Vazifalar</a></li>
+            <li class="{% if active == 'work-4' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:tasks' %}"><i class='bx bx-cube'></i>Vazifalar</a></li>
 
             <li data-name="eski"><a href="{% url 'work:index' %}" style="font-weight: 600; color: blue;"><i class='bx bx-euro'></i>Moliya bo'limi</a></li>
             <li class="{% if active == 'work-5' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:index' %}"><i class='bx bxs-report'></i>Hisobotlar</a></li>
-            <li class="{% if active == 'work-6' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:index' %}"><i class='bx bx-circle-three-quarter'></i>Tranzaksiyalar</a></li>
+            <li class="{% if active == 'work-6' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:tranzaksiya' %}"><i class='bx bx-circle-three-quarter'></i>Tranzaksiyalar</a></li>
 
 
         </ul>
@@ -166,7 +172,11 @@
             <i class='bx bx-menu'></i>
             <form action="#"></form>
             <input type="checkbox" id="theme-toggle" hidden>
-            <label for="imglogo" style="color: green;">{{ request.user.full_name }} - {{ request.user.position }}</label>
+            <label for="imglogo" style="color: green;">
+                {% if request.user.image %}
+                        <img src="{{ request.user.image.url }}" class="avatar" alt="{{ request.user.username }} Image">
+                    {% endif %}
+                {{ request.user.full_name }} - {{ request.user.position }}</label>
             <!-- <a href="#" class="profile" id="imglogo">
                 <img src="{% static 'work/images/logo.png' %}">
             </a> -->
