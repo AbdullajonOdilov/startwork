@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from .models import Projects
 
-# Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    projects = Projects.objects.filter(start_date__isnull=True)
+    context = {
+        "projects": projects,
+    }
+    return render(request, 'index.html', context=context)
 
 def logout_user(request):
     logout(request)

@@ -211,7 +211,7 @@ td {
                             </tr>
                           </thead>
                           <tbody id="myDropdown">
-                            {% for product in products %}
+                            {% for product in projects %}
 
                             {% if product.remain > 0 %}
                               <tr style="color: green;" style="margin-left: 10px;" data-product-id="{{ product.id }}" data-product-name="{{ product.name }}" data-product-price="{{ product.price }}" data-product-profit="{{ product.profit_percentage }}" data-product-type="{{ product.type.name }}" data-product-remain="{{ product.remain }}">
