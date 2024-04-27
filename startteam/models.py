@@ -74,6 +74,7 @@ class Projects(models.Model):
     paid_money = models.FloatField(default=0)
     images = models.ManyToManyField(Images)
     start_date = models.DateField(blank=True, null=True)
+    duration = models.CharField(max_length=200, null=True, blank=True)
     end_date = models.DateField(blank=True, null=True)
     date = models.DateTimeField(auto_now_add=True)
 
@@ -102,7 +103,7 @@ class Team(models.Model):
     summa = models.FloatField()
     paid_money = models.FloatField()
     status = models.BooleanField(default=True)
-    telegram_group = models.CharField(max_length=400, blank=True, null=True)
+    telegram_group = models.URLField(default='https://t.me/')
     date = models.DateField(auto_now=True)
 
     def __str__(self):
@@ -118,3 +119,13 @@ class Telegram(models.Model):
         verbose_name_plural = 'Telegram'
 
 
+class Proposal(models.Model):
+    project = models.ForeignKey(Projects, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.TextField(max_length=10000)
+    date = models.DateTimeField(auto_now_add=True)
+    joined = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'Proposal'
+        verbose_name_plural = 'Proposals'

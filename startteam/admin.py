@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Projects, Orders, Team, Images
+from .models import User, Projects, Orders, Team, Images, Proposal
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
@@ -12,6 +12,14 @@ class CustomUserCreationForm(UserCreationForm):
 class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = User
+
+
+class ProposalAdmin(admin.ModelAdmin):
+    list_display = ('project', 'user', 'message', 'date', 'joined')
+    list_filter = ('joined',)
+    search_fields = ('project__name', 'user__username')
+
+admin.site.register(Proposal, ProposalAdmin)
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm

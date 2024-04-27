@@ -137,8 +137,19 @@
         </a>
         <ul class="side-menu side-menu-1">
             <!-- bx-calendar-check -->
-            <li data-name="sotish"><a href="{% url 'work:index' %}" style="font-weight: 600; color: blue;"><i class='bx bxs-zap'></i>Loyihalar bo'limi</a></li>
+            <li data-name="yangi"><a href="{% url 'work:index' %}" style="font-weight: 600; color: blue;"><i class='bx bxs-zap'></i>Yangi loyihalar</a></li>
             <li class="{% if active == 'work-1' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:index' %}"><i class='bx bx-package'></i>Loyihalar</a></li>
+            <li class="{% if active == 'work-2' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:proposal_view' %}"><i class='bx bx-cart-add'></i>Arizalar</a></li>
+
+            <li data-name="eski"><a href="{% url 'work:index' %}" style="font-weight: 600; color: blue;"><i class='bx bxs-package'></i>Ishlar bo'limi</a></li>
+            <li class="{% if active == 'work-3' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:index' %}"><i class='bx bx-detail'></i>Jamoalar</a></li>
+            <li class="{% if active == 'work-4' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:index' %}"><i class='bx bx-cube'></i>Vazifalar</a></li>
+
+            <li data-name="eski"><a href="{% url 'work:index' %}" style="font-weight: 600; color: blue;"><i class='bx bx-euro'></i>Moliya bo'limi</a></li>
+            <li class="{% if active == 'work-5' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:index' %}"><i class='bx bxs-report'></i>Hisobotlar</a></li>
+            <li class="{% if active == 'work-6' %}active{% endif %}" data-name="obyekt"><a href="{% url 'work:index' %}"><i class='bx bx-circle-three-quarter'></i>Tranzaksiyalar</a></li>
+
+
         </ul>
         <ul class="side-menu">
             <li>

@@ -185,48 +185,7 @@ td {
                   {% endif %}
                 {% endif %}
                   <i class='bx bx-package'></i>
-                  <h3>Loyihalar</h3>
-                  <!-- <input type="text" class="product_search" placeholder="Mahsulot nomi"> -->
-                  <input type="text" placeholder="Qidiruv .." id="myInput2" onkeyup="filterFunction2()" style="max-width: 300px;">
-
-                  <div class="dropdown">
-                    <select id="myselect2" class="button_cool" title="Loyiha turi bo'yicha saralash" style="width: 210px;" onchange="filterFunction2()">
-                      <option value="0" {% if request.COOKIES.product_type == 0 %}selected {% endif %}>Barcha loyihalar</option>
-                      {% for product_type in project_types %}
-                          <option value="{{ product_type }}" {% if request.COOKIES.product_type == product_type|stringformat:"s" %}selected {% endif %}>{{ product_type }}</option>
-                      {% endfor %}
-                  </select>
-                  
-                      <button onclick="myFunction()" class="dropbtn add-button add-btn" style="display: none;">Qidirish</button>
-                      <div id="myDropdown" class="dropdown-content">
-                        <input type="text" placeholder="Qidiruv .." id="myInput" onkeyup="filterFunction()">
-                        <table>
-                          <thead>
-                            <tr>
-                              <th><center style="font-size: 18px !important;">№</center></th>
-                              <th><center style="font-size: 18px !important;">Yo'nalish</center></th>
-                              <th><center style="font-size: 18px !important;">Nomi</center></th>
-                              <th><center style="font-size: 18px !important;">Qisqacha</center></th>
-                              <th><center style="font-size: 18px !important;">Narxi</center></th>
-                              <th><center style="font-size: 18px !important;">Sana</center></th>
-                            </tr>
-                          </thead>
-                          <tbody id="myDropdown">
-                            {% for project in projects %}
-
-                              <tr style="color: green;" style="margin-left: 10px;" data-project-id="{{ project.id }}" data-project-name="{{ project.name }}" data-project-price="{{ project.price }}" data-project-type="{{ project.type }}">
-                                <td><center>{{ forloop.counter }}</center></td>
-                                <td><center>{{ project.type }}</center></td>
-                                <td><center>{{ project.name }}</center></td>
-                                <td><center>{{ project.desc_to_workers }}</center></td>
-                                <td style="max-width: 75px !important;"><center>{{ project.price|spacecomma }}</center></td>
-                                <td><center>{{ project.date | date:"D d M Y H:i:s" }}</center></td>
-                            </tr>
-                          {% endfor %}
-                          </tbody>
-                      </table>
-                      </div>
-                    </div>
+                  <h3>Arizalar</h3>
                 </div>
             <form action="" method="post" enctype="multipart/form-data" class="form" id="productForm">
                 {% csrf_token %}
@@ -235,23 +194,23 @@ td {
                     <thead>
                         <tr>
                             <th><center style="font-size: 18px !important;">№</center></th>
-                            <th><center style="font-size: 18px !important;">Yo'nalish</center></th>
                             <th><center style="font-size: 18px !important;">Nomi</center></th>
                             <th><center style="font-size: 18px !important;">Narxi</center></th>
+                            <th><center style="font-size: 18px !important;">Qo'shildingiz</center></th>
                             <th><center style="font-size: 18px !important;">Sana</center></th>
-                            <th style="font-size: 18px !important;">Qisqacha</th>
+                            <th style="font-size: 18px !important;">Xabaringiz</th>
                         </tr>
                     </thead>
                     <tbody id="myDropdown2">
-                      {% for project in projects %}
+                      {% for project in proposals %}
                       <tr>
                         <tr>
                           <td><center>{{ forloop.counter }}</center></td>
-                          <td><center>{{ project.type }}</center></td>
-                          <td><center><a href="{% url 'work:project_details_view' project.id %}" class="project-link" data-project-id="{{ project.id }}">{{ project.name }}</a></center></td>
-                          <td style="max-width: 75px !important;"><center>{{ project.price|spacecomma }}</center></td>
+                          <td><center><a href="{% url 'work:project_details_view' project.project.id %}" class="project-link" data-project-id="{{ project.project.id }}">{{ project.project.name }}</a></center></td>
+                          <td style="max-width: 75px !important;"><center>{{ project.project.price|spacecomma }}</center></td>
+                          <td><center>{{ project.joined| bool_to_word }}</center></td>
                           <td><center>{{ project.date | date:"D d M Y H:i:s" }}</center></td>
-                          <td style="text-align: left;">{{ project.desc_to_workers| only_show_x_words:10 }}</td>
+                          <td style="text-align: left;">{{ project.message| only_show_x_words:10 }}</td>
                         </tr>
                       {% endfor %}
                     </tbody>

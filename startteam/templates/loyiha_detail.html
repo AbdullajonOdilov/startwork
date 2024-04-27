@@ -170,31 +170,32 @@ td {
     text-overflow: ellipsis; /* Show an ellipsis (...) when content overflows */
     white-space: nowrap; /* Prevent text from wrapping to the next line */
 }
-        #LoyihaSelect {
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f5f5f5;
-            color: #333;
-            outline: none;
-            transition: border-color 0.3s;
-        }
+    #LoyihaSelect {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f5f5f5;
+        color: #333;
+        outline: none;
+        transition: border-color 0.3s;
+    }
 
-        #LoyihaSelect:hover {
-            border-color: #aaa;
-        }
+    #LoyihaSelect:hover {
+        border-color: #aaa;
+    }
 
-        #LoyihaSelect:focus {
-            border-color: #4CAF50;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
-        }
-        .project-details-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
+    #LoyihaSelect:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+    }
+    .project-details-container {
+    max-width: 1200px;
+    /* margin: 0 auto; */
+    padding: 0 20px;
+    border: 0px solid #ccc;
     border-radius: 5px;
+    line-height: 1.5
 }
 
 .form-group {
@@ -207,7 +208,7 @@ label {
 }
 
 select, textarea {
-    width: 100%;
+    width: 60%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -215,15 +216,35 @@ select, textarea {
 
 button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #00363A;
     color: #fff;
-    border: none;
+    border: 1px;
     border-radius: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #fff;
+    color: #00363A;
+    border: 1px solid #00363A;
+}
+.project-images {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-container {
+    max-width: 1000px;
+    max-height: 500px;
+    margin: 10px; /* Adjust the margin between images as needed */
+    border: 1px solid #ccc; /* Optional: Add a border around each image container */
+    border-radius: 5px; /* Optional: Add border radius for rounded corners */
+    overflow: hidden; /* Optional: Hide overflowing content */
+}
+
+.image-container img {
+    width: 100%; /* Make the image fill the container */
+    height: auto; /* Maintain aspect ratio */
 }
 
 </style>
@@ -234,29 +255,36 @@ button:hover {
     <div class="bottom-data">
         <div class="orders">
             <div class="header">          
-            <h3><i class='bx bx-receipt'></i> <span style="color: green;">{{ project.name }}</span>  loyihasi haqida batafsil</h3>
+            <!-- <h3><i class='bx bx-receipt'></i> <span style="color: green;">{{ project.name }}</span>  loyihasi haqida batafsil</h3> -->
         </div>
-        <div class="project-details-container">
-            <h2>{{ project.name }}</h2>
-            <p><strong>Type:</strong> {{ project.type }}</p>
-            <p><strong>Description:</strong> {{ project.desc_to_workers }}</p>
+        <div class="project-details-container" style="line-height: 2;">
+            <h2 style="font-weight: 400; font-size: 40px; line-height: 2;">{{ project.name }} loyihasi haqida batafsil</h2> 
+            <p style="line-height: 2; font-size: 20px;"><strong style="font-size: 20px; font-weight: 600;">Loyiha turi:</strong> &nbsp;&nbsp;{{ project.type }} <br> <strong style="font-size: 20px; font-weight: 600;">Muddat: </strong> &nbsp;&nbsp;{{ project.duration }} <br><strong style="font-size: 20px; font-weight: 600;">Umumiy narx: </strong> &nbsp;&nbsp;{{ project.price|spacecomma }} - so'm</p>
+            <p style="line-height: 2;"><strong style="font-size: 20px; font-weight: 600;">Majburiyatlar:</strong> <br>{{ project.desc_to_workers|linebreaks }}</p>
+            {% if project.images %}
+            <p style="line-height: 2;"><strong style="font-size: 20px; font-weight: 600;">Loyiha rasmlari:</strong> </p>
+            <div class="project-images">
+                {% for image in project.images.all %}
+                    <div class="image-container">
+                        <img src="{{ image.image.url }}"  alt="Product Image">
+                    </div>
+                {% endfor %}
+            </div>
+            <br>
+            {% endif %}
+            
+            
             <hr>
-            <form action="" class="project-form" method="post">
+            <br>
+            <form style="line-height: 2;" action="{% url 'work:proposal' project.id %}" class="project-form" method="post">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="position">Choose Position:</label>
-                    <select name="position" id="position">
-                        <option value="position1">Position 1</option>
-                        <option value="position2">Position 2</option>
-                        <!-- Add more options as needed -->
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Write Message:</label>
-                    <textarea name="message" id="message" rows="4"></textarea>
+                    <label for="message" style="line-height: 2; font-size: 25px; font-weight: 400;">Qiziqgan bo'lsangiz bizga xabar qoldiring:</label>
+                    <textarea name="message" id="message" rows="5" placeholder="Xabar matni" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <br>
         </div>
         
         
