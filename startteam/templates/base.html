@@ -1,0 +1,267 @@
+<!-- base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Do'kon{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/media.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    {% block styles %}{% endblock %}
+    <style>
+        #myTable1 {
+        border-collapse: collapse; /* Collapse the borders */
+        border: none;
+        }
+        #myTable1 th, #myTable1 td {
+            border: none; /* Remove borders from table cells */
+        }
+        #messages-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translate(-50%);
+            max-width: 300px;
+            z-index: 1000;
+        }
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .message.success {
+            background-color: #2ecc71; /* Green color for success messages */
+            color: #fff;
+        }
+
+        .message.error {
+            background-color: #e74c3c; /* Red color for error messages */
+            color: #fff;
+        }
+        .scrollable-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scrollbar-width: thin; /* For Firefox */
+        }
+
+        .scrollable-container::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .scrollable-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .scrollable-container::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        .scrollable-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        #job_type,
+        #productTypeSelect,
+        #product_type,
+        #obyekt_worker,
+        #workers,
+        .button_cool {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            color: #333;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        #job_type:hover,
+        #productTypeSelect:hover,
+        #product_type:hover,
+        #obyekt_worker:hover,
+        #workers:hover,
+        .button_cool:hover {
+            border-color: #aaa;
+        }
+
+        #job_type:focus,
+        #productTypeSelect:focus,
+        #product_type:focus,
+        #obyekt_worker:focus,
+        #workers:focus,
+        .button_cool:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+        }
+        td {
+    overflow: hidden; /* Hide any content that exceeds the width */
+    text-overflow: ellipsis; /* Show an ellipsis (...) when content overflows */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+}
+#myTable3 td, #myTable3 th {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+@media print {
+  .sidebar {
+    display: none;
+  }
+  nav {
+    display: none;
+  }
+  .main_content {
+    margin-left: 0;
+  }
+}
+    </style>
+</head>
+
+<body class="scrollable-container">
+    <div id="popup" class="popup"></div>
+    <div class="sidebar" id="sidebar-left-side">
+        <!-- Sidebar content -->
+        <a href="" class="logo">
+            <img src="{% static 'images/logo.png' %}" style="margin-top: 30px; margin-left: 60px;" height="100" alt="Logo">
+            <!-- <div class="logo-name" style="margin-top: 10px; margin-left: 10px; font-size: 20px;"><span>Start</span>Work</div> -->
+        </a>
+        <ul class="side-menu side-menu-1"> 
+            <!-- bx-calendar-check -->
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="{% url 'logout_user' %}" class="logout">
+                    <i class='bx bx-log-out-circle'></i>
+                    Chiqib ketish
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <!-- Navbar and main content -->
+        <nav>
+            <i class='bx bx-menu'></i>
+            <form action="#"></form>
+            <input type="checkbox" id="theme-toggle" hidden>
+            <label for="imglogo" style="color: green;">{{ request.user.full_name }} - {{ request.user.position }}</label>
+            <!-- <a href="#" class="profile" id="imglogo">
+                <img src="{% static 'images/logo.png' %}">
+            </a> -->
+        </nav>
+        {% if messages %}
+            <div id="messages-container">
+                {% for message in messages %}
+                    <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Common scripts -->
+    <script src="{% static 'js/library.js' %}"></script>
+    <script>
+        TP.setup("myTable1", "popup");
+        TP.setup("myTable2", "popup");
+        TP.sort("myTable1", 0);
+        TP.sort("myTable2", 0);
+    </script>
+    <script>
+        // Function to dynamically add an image with the source set to a static file
+        function addImage() {
+            // Create img element
+            var img = document.createElement('img');
+            // Set src attribute to the static file URL
+            img.src = "{% static 'images/logo.png' %}";
+            img.height = 100;
+            
+            // Get the sidebar left side element by its id
+            var sidebarLeftSide = document.getElementById('sidebar-left-side');
+            
+            // Append img element to sidebar left side
+            sidebarLeftSide.appendChild(img);
+        }
+
+        // Function to toggle class on the sidebar close button
+        function toggleSidebarClass() {
+            // Get the sidebar close button by its class name
+            var sidebarCloseButton = document.querySelector('.sidebar.close');
+            // Toggle the class on the button
+            sidebarCloseButton.classList.toggle('   ');
+            
+            // If the sidebar close button now has the class "sidebar close"
+            if (sidebarCloseButton.classList.contains('sidebar') && sidebarCloseButton.classList.contains('close')) {
+                // Call addImage function to append the image to sidebar-left-side
+                addImage();
+            } else {
+                // Otherwise, remove the image from sidebar-left-side
+                var sidebarLeftSide = document.getElementById('sidebar-left-side');
+                sidebarLeftSide.innerHTML = '';
+            }
+        }
+
+        // Call the functions
+        toggleSidebarClass(); // Toggle class on sidebar close button
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Find table elements
+            var table = document.getElementById('myTable3');
+            var rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    
+            // Iterate through each table row
+            for (var i = 0; i < rows.length; i++) {
+                var row = rows[i];
+    
+                // Get values for foiz-narxi and soni
+                var foizNarxi = parseFloat(row.querySelector('[data-active="foiz-narxi"]').innerText.replace("so'm", '').trim());
+                var soni = parseFloat(row.querySelector('[data-active="soni"]').innerText.replace('ta', '').trim());
+    
+                // Calculate summa
+                var summa = foizNarxi * soni;
+    
+                // Insert result into data-active="summa"
+                row.querySelector('[data-active="summa"]').innerText = summa + "so'm";
+            }
+    
+            var narxiInput = document.getElementById('narxi');
+            var foizInput = document.getElementById('foiz');
+            var foizNarxiInput = document.getElementById('foiz_narxi');
+    
+            // Input event handler for narxi and foiz fields
+            narxiInput.addEventListener('input', updateFoizNarxi);
+            foizInput.addEventListener('input', updateFoizNarxi);
+    
+            function updateFoizNarxi() {
+                // Get values for narxi and foiz
+                var narxiValue = parseFloat(narxiInput.value) || 0;
+                var foizValue = parseFloat(foizInput.value) || 0;
+    
+                // Calculate the new value for foiz_narxi
+                var foizNarxiValue = narxiValue * ((100 + foizValue) / 100);
+    
+                // Set the new value in the foiz_narxi field
+                foizNarxiInput.value = foizNarxiValue.toFixed(2);
+            }
+        });
+        
+    </script>
+    <script src="{% static 'js/variables.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script defer src="{% static 'js/animate.js' %}"></script>
+    <script defer src="{% static 'js/dokon.js' %}"></script>
+    </body>
+    
+    </html>
+    

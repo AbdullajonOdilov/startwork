@@ -32,6 +32,7 @@ class CustomUserManager(BaseUserManager):
 
 
 class User(AbstractUser):
+    
     full_name = models.CharField(max_length=200)
     position = models.CharField(max_length=200)
     skills = models.TextField()
@@ -42,6 +43,8 @@ class User(AbstractUser):
     status = models.CharField(choices=STATUS_CHOICES, max_length=10)
     contacts = models.TextField(blank=True, null=True)
     education = models.CharField(max_length=400,  blank=True, null=True)
+    accepted = models.BooleanField(default=False)
+    
 
     objects = CustomUserManager()
 
@@ -62,9 +65,10 @@ class Images(models.Model):
 class Projects(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
     contacts = models.CharField(max_length=900)
-    desc = models.TextField()
+    desc = models.TextField(blank=True, null=True)
+    desc_to_workers = models.TextField(blank=True, null=True)
     price = models.FloatField(verbose_name="Project's price")
-    workers_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    workers_id = models.ManyToManyField(User, blank=True)
     status = models.CharField(choices=PROJECT_CHOICES, max_length=15)
     paid_money = models.FloatField(default=0)
     images = models.ManyToManyField(Images)
