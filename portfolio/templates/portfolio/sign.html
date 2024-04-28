@@ -12,47 +12,48 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-in-container" id="signUp">
-            <form action="#">
+            <form action="{% url 'portfolio:register' %}", method="post">
+                {% csrf_token %}
                 <h1>Profile Yaratish</h1>
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <div>
-                        <label>Ism</label>
-                        <input type="text" placeholder="Ism" />
+                        <label>To'liq ism</label>
+                        <input type="text" name="full_name" placeholder="Ism" />
                     </div>
                     <div>
-                        <label for="">Email</label>
-                        <input type="email" placeholder="Email" />
+                        <label for="">Username</label>
+                        <input type="text" name="username" placeholder="Email" />
                     </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <div>
                         <label for="">Parol</label>
-                        <input type="password" placeholder="Parol" />
+                        <input type="password" name="password" placeholder="Parol" />
                     </div>
                     <div>
                         <label for="">Kasbi</label>
-                        <input type="text" placeholder="Frontend, Backend" />
+                        <input type="text" name="position" placeholder="Frontend, Backend" />
                     </div>
                 </div>
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <div>
                         <label for="">O'quv Markaz</label>
-                        <input type="text" placeholder="Itpark, Najot Ta'lim" />
+                        <input type="text" name="edu" placeholder="Itpark, Najot Ta'lim" />
                     </div>
                     <div>
                         <label for="">Telefon Raqam</label>
-                        <input type="text" placeholder="+998 99 999 99 99" />
+                        <input type="text" name="contact" placeholder="+998 99 999 99 99" />
                     </div>
                 </div>
                 <div style="width: 100%;">
                     <label for="">Ko'nikmalar</label>
-                    <input type="text" placeholder="Html, Css, Javascript, React js, Material ui" />
+                    <input type="text" name="skills" placeholder="Html, Css, Javascript, React js, Material ui" />
                 </div>
                 <div style="width: 100%;">
                     <label for="">Yashash joyi</label>
-                    <input type="text" placeholder="Fergana, Quva Istiqlol ko'chasi, 28-uy" />
+                    <input type="text" name="address" placeholder="Fergana, Quva Istiqlol ko'chasi, 28-uy" />
                 </div>
-                <button>Ro'yhatdan O'tish</button>
+                <button type="submit">Ro'yhatdan O'tish</button>
             </form>
         </div>
         <div class="overlay-container">

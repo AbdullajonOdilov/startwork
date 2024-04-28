@@ -11,12 +11,13 @@
     <div class="container" id="container">
        <div class="column">
         <div class="form-container sign-in-container">
-            <form action="#">
+            <form action="{% url 'portfolio:login' %}" method="post">
+                {% csrf_token %}
                 <h1>Kirish</h1>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Parol" />
-                <a href="#">Parolni Unutdingizmi ?</a>
-                <button>Kirish</button>
+                <input type="text" name="username" placeholder="Username" />
+                <input type="password" name="password" placeholder="Parol" />
+                <!-- <a href="#">Parolni Unutdingizmi ?</a> -->
+                <button type="submit">Kirish</button>
             </form>
         </div>
         <div class="overlay-container">
@@ -25,7 +26,7 @@
                     <h1>Salom, Bro!</h1>
                     <p>Profilingiz Yo'qmi?</p>
                     <button class="ghost" id="signUp" style="cursor: pointer;">
-                        <a href="register/" style="color: white;">Ro'yhatdan O'tish</a>
+                        <a href="/register/" style="color: white;">Ro'yhatdan O'tish</a>
                     </button>
                    <a href="/" id="signUp" style="cursor: pointer; position: absolute; bottom: 20px; right: 20px; color: white;">
                         <h1 style="color: white;"><i class="bi bi-arrow-left"></i>Bosh Sahifa</h1>
