@@ -1768,28 +1768,28 @@ section {
 
 /* for zigzag  */
 .coment{
-  height: 100%;
+  height: 40vh;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
-  padding: 10px;
+  padding: 20px;
 }
 .zigzag {
   border: none;
   background: #fbfbf8;
   transition: all 0.3s ease;
-  width: 450px;
+  width: 480px;
   display: flex;
   align-items: start;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   padding: 30px;
   -webkit-mask: conic-gradient( from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50%/20px 100%;
 }
 
 .zigzag:hover {
-  transform: scale(1.1) rotate(1deg);
+  transform: scale(1.05) rotate(1deg);
 }
 .zigzag img {
   width: 60px;
@@ -1806,80 +1806,25 @@ section {
 }
 @media (max-width: 768px) {
   .zigzag{
-    width: 100%;
+    width: 90%;
+  }
+  .coment{
+    height: 100%;
+    gap: 20px;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
   }
   .zigzag h3{
     width: 300px;
   }
-  .coment{
+  .zigzag-texts{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
   }
-}
-.slider {
-  height: 300px;
-  margin: auto;
-  position: relative;
-  width: 90%;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
-
-.slide-track {
-  display: flex;
-  width: calc(300px * 18);
-  animation: scroll 40s linear infinite;
-}
-
-.slide-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-300px * 9));
-  }
-}
-
-.slide {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  perspective: 300px;
-}
-
-img {
-  width: 100%;
-  transition: transform 200ms;
-}
-
-img:hover {
-  transform: translateZ(20px);
-}
-
-.slider::before,
-.slider::after {
-  background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,00) 10%);
-  content: '';
-  height: 100%;
-  position: absolute;
-  width: 15%;
-  z-index: 2;
-}
-
-.slider::before {
-  left: 0;
-  top: 0;
-}
-
-.slider::after {
-  right: 0;
-  top: 0;
-  transform: rotateZ(180deg);
 }
